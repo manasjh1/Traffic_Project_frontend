@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { LayoutDashboard, FileText, LogOut, Shield, ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
+import gbuLogo from "@/assets/gbu-logo.webp";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -25,13 +26,15 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-              <Shield className="w-6 h-6 text-primary" />
-            </div>
+          <div className="flex items-center gap-4">
+            <img 
+              src={gbuLogo} 
+              alt="Gautam Buddha University" 
+              className="w-12 h-12 object-contain"
+            />
             <div>
-              <h1 className="font-bold text-lg">Traffic Command</h1>
-              <p className="text-xs text-muted-foreground">Monitoring System</p>
+              <h1 className="font-bold text-lg">Gautam Buddha University</h1>
+              <p className="text-xs text-muted-foreground">Smart Traffic Monitoring System</p>
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-2">
@@ -78,6 +81,21 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           ))}
         </div>
       </nav>
+
+      <footer className="border-t border-border bg-card/30 backdrop-blur-sm mt-12">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Shield className="w-4 h-4 text-primary" />
+              <span>© {new Date().getFullYear()} Gautam Buddha University. All rights reserved.</span>
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Developed by </span>
+              <span className="font-semibold text-primary">Manas Jha</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
