@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-import { LayoutDashboard, FileText, LogOut, Shield } from "lucide-react";
+import { LayoutDashboard, FileText, LogOut, Shield, ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
 
@@ -18,6 +18,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navItems = [
     { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
     { title: "Violations", icon: FileText, path: "/violations" },
+    { title: "Entry/Exit", icon: ArrowLeftRight, path: "/entry-exit" },
   ];
 
   return (
