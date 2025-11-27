@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Radio, Car, Clock, MapPin } from "lucide-react";
+import { Radio, Car, Clock, MapPin, Video } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import DashboardLayout from "@/components/layout/DashboardLayout";
@@ -72,6 +72,12 @@ const LiveFeed = () => {
     return `${Math.floor(seconds / 3600)}h ago`;
   };
 
+  const cameraFeeds = [
+    { id: 1, name: "Gate 1 - Main Entry", status: "active" },
+    { id: 2, name: "Gate 2 - South Entry", status: "active" },
+    { id: 3, name: "Gate 3 - Service Entry", status: "active" },
+  ];
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -92,7 +98,80 @@ const LiveFeed = () => {
           </Badge>
         </div>
 
-        <div className="grid gap-4">
+        {/* Camera Feeds Grid */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Video className="w-5 h-5 text-primary" />
+            Live Camera Feeds
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {cameraFeeds.map((camera) => (
+              <Card key={camera.id} className="border-border bg-card overflow-hidden">
+                <CardHeader className="p-4 pb-3">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-sm font-medium">{camera.name}</CardTitle>
+                    <Badge variant="outline" className="bg-success/20 text-success border-success/50 text-xs">
+                      <span className="relative flex h-1.5 w-1.5 mr-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-success"></span>
+                      </span>
+                      Live
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-secondary/50">
+                    {/* Simulated camera feed with animated grid overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-background/40">
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
+                          {Array.from({ length: 48 }).map((_, i) => (
+                            <div key={i} className="border border-primary/20" />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="absolute top-2 left-2 text-xs font-mono text-primary/80 bg-background/60 px-2 py-1 rounded">
+                        CAM {camera.id}
+                      </div>
+                      <div className="absolute bottom-2 right-2 text-xs font-mono text-primary/80 bg-background/60 px-2 py-1 rounded">
+                        {new Date().toLocaleTimeString()}
+                      </div>
+                      {/* Simulated scanning line */}
+                      <div 
+                        className="absolute left-0 right-0 h-0.5 bg-primary/40 animate-scan"
+                        style={{
+                          animation: 'scan 4s linear infinite',
+                          animationDelay: `${camera.id * 0.5}s`
+                        }}
+                      />
+                      {/* Center crosshair */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative">
+                          <div className="absolute w-12 h-0.5 bg-primary/40 -translate-x-1/2 left-1/2" />
+                          <div className="absolute h-12 w-0.5 bg-primary/40 -translate-y-1/2 top-1/2" />
+                        </div>
+                      </div>
+                      {/* Mock vehicle detection box */}
+                      <div className="absolute top-1/3 left-1/4 w-32 h-24 border-2 border-primary/60 animate-pulse-slow">
+                        <div className="absolute -top-6 left-0 text-xs font-mono text-primary bg-background/80 px-1.5 py-0.5 rounded">
+                          Vehicle Detected
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Vehicle Activity Feed */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Car className="w-5 h-5 text-primary" />
+            Recent Activity
+          </h2>
+          <div className="grid gap-4">
           {vehicles.map((vehicle, index) => (
             <Card 
               key={vehicle.id}
@@ -151,6 +230,7 @@ const LiveFeed = () => {
               </CardContent>
             </Card>
           ))}
+          </div>
         </div>
 
         {vehicles.length === 0 && (
