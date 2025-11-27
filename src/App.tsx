@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Violations from "./pages/Violations";
 import EntryExit from "./pages/EntryExit";
+import LiveFeed from "./pages/LiveFeed";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/violations" element={<Violations />} />
           <Route path="/entry-exit" element={<EntryExit />} />
+          <Route path="/live-feed" element={<LiveFeed />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
