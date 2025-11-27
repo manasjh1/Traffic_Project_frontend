@@ -13,6 +13,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    // Clear auth data
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/");
   };
 

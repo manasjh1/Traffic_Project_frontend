@@ -4,13 +4,13 @@ import { Shield, Lock, Mail, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import gbuLogo from "@/assets/gbu-logo.webp";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -19,23 +19,37 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate registration
-    setTimeout(() => {
-      if (name && email && password) {
-        toast({
-          title: "Registration Successful",
-          description: "Your account has been created successfully",
-        });
-        navigate("/dashboard");
-      } else {
-        toast({
-          title: "Registration Failed",
-          description: "Please fill in all fields",
-          variant: "destructive",
-        });
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          email, 
+          password,
+          full_name: fullName 
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || "Registration failed");
       }
+
+      toast({
+        title: "Registration Successful",
+        description: "You can now login with your credentials.",
+      });
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: "Registration Failed",
+        description: error instanceof Error ? error.message : "Something went wrong",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -52,71 +66,68 @@ const Register = () => {
           </div>
           <CardTitle className="text-3xl font-bold">Create Account</CardTitle>
           <CardDescription className="text-muted-foreground">
-            Join Gautam Buddha University's Traffic System
+            Join the Traffic Command Center
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleRegister} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                Name
-              </Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="bg-secondary border-border"
-                required
-              />
+              <Label htmlFor="fullName">Full Name</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="fullName"
+                  type="text"
+                  placeholder="John Doe"
+                  className="pl-9 bg-secondary border-border"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="admin@college.edu"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-secondary border-border"
-                required
-              />
+              <Label htmlFor="email">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="admin@college.edu"
+                  className="pl-9 bg-secondary border-border"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="flex items-center gap-2">
-                <Lock className="w-4 h-4" />
-                Password
-              </Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-secondary border-border"
-                required
-              />
+              <Label htmlFor="password">Password</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="pl-9 bg-secondary border-border"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
             </div>
-            <Button
-              type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-              disabled={isLoading}
-            >
+            <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Creating Account..." : "Register"}
             </Button>
-            <div className="text-center text-sm text-muted-foreground">
-              Already have an account?{" "}
-              <Link to="/" className="text-primary hover:underline">
-                Sign in
-              </Link>
-            </div>
           </form>
         </CardContent>
+        <CardFooter className="flex justify-center">
+          <p className="text-sm text-muted-foreground">
+            Already have an account?{" "}
+            <Link to="/" className="text-primary hover:underline">
+              Login
+            </Link>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   );
