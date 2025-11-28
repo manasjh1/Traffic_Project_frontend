@@ -30,7 +30,7 @@ interface Violation {
 const mockViolations: Violation[] = [
   {
     id: "V-001",
-    timestamp: "2024-01-20 14:32:15",
+    timestamp: "2025-11-25 14:32:15",
     licensePlate: "UP 32 AO 1234",
     violationType: "Speed Violation",
     location: "Gate 2 - Main Entry",
@@ -39,7 +39,7 @@ const mockViolations: Violation[] = [
   },
   {
     id: "V-002",
-    timestamp: "2024-01-20 13:15:42",
+    timestamp: "2025-11-25 13:15:42",
     licensePlate: "UP 70 CU 5678",
     violationType: "Wrong Parking",
     location: "Parking Lot A",
@@ -48,7 +48,7 @@ const mockViolations: Violation[] = [
   },
   {
     id: "V-003",
-    timestamp: "2024-01-20 12:08:33",
+    timestamp: "2025-11-25 12:08:33",
     licensePlate: "UP 14 EH 9012",
     violationType: "Red Light",
     location: "Intersection 1",
@@ -57,7 +57,7 @@ const mockViolations: Violation[] = [
   },
   {
     id: "V-004",
-    timestamp: "2024-01-20 11:45:21",
+    timestamp: "2025-11-25 11:45:21",
     licensePlate: "UP 78 GS 3456",
     violationType: "Speed Violation",
     location: "Campus Road",
@@ -66,7 +66,7 @@ const mockViolations: Violation[] = [
   },
   {
     id: "V-005",
-    timestamp: "2024-01-20 10:22:18",
+    timestamp: "2025-11-25 10:22:18",
     licensePlate: "UP 15 JY 7890",
     violationType: "No Permit",
     location: "Faculty Parking",
