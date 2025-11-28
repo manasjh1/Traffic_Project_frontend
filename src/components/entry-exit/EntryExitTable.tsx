@@ -30,7 +30,7 @@ interface EntryExitRecord {
 const mockRecords: EntryExitRecord[] = [
   {
     id: "E-001",
-    licensePlate: "ABC-1234",
+    licensePlate: "UP 32 AO 1234",
     vehicleType: "Car",
     entryTime: "2024-01-20 14:32:15",
     exitTime: null,
@@ -40,7 +40,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-002",
-    licensePlate: "XYZ-5678",
+    licensePlate: "UP 70 CU 5678",
     vehicleType: "Bike",
     entryTime: "2024-01-20 13:15:42",
     exitTime: "2024-01-20 16:22:18",
@@ -50,7 +50,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-003",
-    licensePlate: "DEF-9012",
+    licensePlate: "UP 14 EH 9012",
     vehicleType: "Car",
     entryTime: "2024-01-20 12:08:33",
     exitTime: "2024-01-20 14:45:21",
@@ -60,7 +60,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-004",
-    licensePlate: "GHI-3456",
+    licensePlate: "UP 78 GS 3456",
     vehicleType: "Bus",
     entryTime: "2024-01-20 11:45:21",
     exitTime: null,
@@ -70,7 +70,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-005",
-    licensePlate: "JKL-7890",
+    licensePlate: "UP 15 JY 7890",
     vehicleType: "Car",
     entryTime: "2024-01-20 10:22:18",
     exitTime: "2024-01-20 15:10:33",
@@ -80,7 +80,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-006",
-    licensePlate: "MNO-2345",
+    licensePlate: "UP 80 PQ 1357",
     vehicleType: "Bike",
     entryTime: "2024-01-20 09:15:45",
     exitTime: "2024-01-20 17:30:12",
@@ -90,7 +90,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-007",
-    licensePlate: "PQR-6789",
+    licensePlate: "UP 16 RW 8642",
     vehicleType: "Car",
     entryTime: "2024-01-20 08:45:30",
     exitTime: null,
@@ -100,7 +100,7 @@ const mockRecords: EntryExitRecord[] = [
   },
   {
     id: "E-008",
-    licensePlate: "STU-0123",
+    licensePlate: "UP 32 AO 1234",
     vehicleType: "Bike",
     entryTime: "2024-01-20 08:30:15",
     exitTime: "2024-01-20 12:15:42",
@@ -109,7 +109,6 @@ const mockRecords: EntryExitRecord[] = [
     status: "exited",
   },
 ];
-
 const EntryExitTable = ({ searchTerm }: EntryExitTableProps) => {
   const [sortField, setSortField] = useState<keyof EntryExitRecord>("entryTime");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
