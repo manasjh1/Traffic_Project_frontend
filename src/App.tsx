@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Register from "./pages/Register"; // Import the new page
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Violations from "./pages/Violations";
 import EntryExit from "./pages/EntryExit";
@@ -21,10 +21,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} /> {/* Add route */}
+          <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/violations" element={<Violations />} />
           <Route path="/entry-exit" element={<EntryExit />} />
+          <Route path="/live-feed" element={<LiveFeed />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
