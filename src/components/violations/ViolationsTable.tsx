@@ -31,7 +31,7 @@ const mockViolations: Violation[] = [
   {
     id: "V-001",
     timestamp: "2024-01-20 14:32:15",
-    licensePlate: "ABC-1234",
+    licensePlate: "UP 32 AO 1234",
     violationType: "Speed Violation",
     location: "Gate 2 - Main Entry",
     status: "pending",
@@ -40,7 +40,7 @@ const mockViolations: Violation[] = [
   {
     id: "V-002",
     timestamp: "2024-01-20 13:15:42",
-    licensePlate: "XYZ-5678",
+    licensePlate: "UP 70 CU 5678",
     violationType: "Wrong Parking",
     location: "Parking Lot A",
     status: "reviewed",
@@ -49,7 +49,7 @@ const mockViolations: Violation[] = [
   {
     id: "V-003",
     timestamp: "2024-01-20 12:08:33",
-    licensePlate: "DEF-9012",
+    licensePlate: "UP 14 EH 9012",
     violationType: "Red Light",
     location: "Intersection 1",
     status: "resolved",
@@ -58,7 +58,7 @@ const mockViolations: Violation[] = [
   {
     id: "V-004",
     timestamp: "2024-01-20 11:45:21",
-    licensePlate: "GHI-3456",
+    licensePlate: "UP 78 GS 3456",
     violationType: "Speed Violation",
     location: "Campus Road",
     status: "pending",
@@ -67,14 +67,13 @@ const mockViolations: Violation[] = [
   {
     id: "V-005",
     timestamp: "2024-01-20 10:22:18",
-    licensePlate: "JKL-7890",
+    licensePlate: "UP 15 JY 7890",
     violationType: "No Permit",
     location: "Faculty Parking",
     status: "reviewed",
     imageUrl: "/placeholder.svg",
   },
 ];
-
 const ViolationsTable = ({ searchTerm }: ViolationsTableProps) => {
   const [sortField, setSortField] = useState<keyof Violation>("timestamp");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
